@@ -1,5 +1,5 @@
 import React from "react";
-import { Route } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import "./App.css";
 
 // Import Components
@@ -12,34 +12,46 @@ import userService from "../../utils/userService";
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = { user: userService.getUser() };
   }
+
+  componentDidMount() {}
 
   handleSignupOrLogin = async () => {
     this.setState({ user: userService.getUser() });
   };
 
+  handleLogout = () => {
+    userService.logout();
+    this.setState({ user: null });
+  };
+
   render() {
     return (
       <div className="App">
-        <Navbar />
-        <Route
-          exact
-          path="/signup"
-          render={({ history }) => (
-            <SignupPage
-              history={history}
-              handleSignupOrLogin={this.handleSignupOrLogin}
-            />
-          )}
-        />
-        <Route
-          exact
-          path="/login"
-          render={() => (
-            <LoginPage handleSignupOrLogin={this.handleSignupOrLogin} />
-          )}
-        />
+        <Navbar user={this.state.user} handleLogout={this.handleLogout} />
+        <Switch>
+          <Route
+            exact
+            path="/signup"
+            render={({ history }) => (
+              <SignupPage
+                history={history}
+                handleSignupOrLogin={this.handleSignupOrLogin}
+              />
+            )}
+          />
+          <Route
+            exact
+            path="/login"
+            render={({ history }) => (
+              <LoginPage
+                history={history}
+                handleSignupOrLogin={this.handleSignupOrLogin}
+              />
+            )}
+          />
+        </Switch>
       </div>
     );
   }
