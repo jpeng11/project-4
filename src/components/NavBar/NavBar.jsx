@@ -2,26 +2,28 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./NavBar.css";
 
+import { Button } from "semantic-ui-react";
+
 const NavBar = (props) => {
   let nav = props.user ? (
     <div className="NavBar">
-      <Link to="/login" className="NavBar-link">
+      <Button as={Link} to="/login">
         Login
-      </Link>
-      &nbsp;&nbsp;|&nbsp;&nbsp;
-      <Link to="" className="NavBar-link" onClick={props.handleLogout}>
+      </Button>
+      &nbsp;&nbsp;
+      <Button as={Link} to="" onClick={props.handleLogout}>
         LOG OUT
-      </Link>
+      </Button>
     </div>
   ) : (
     <div className="NavBar">
-      <Link to="/login" className="NavBar-link">
+      <Button as={Link} to="/login">
         Login
-      </Link>
-      &nbsp;&nbsp;|&nbsp;&nbsp;
-      <Link to="/signup" className="NavBar-link">
+      </Button>
+      &nbsp;&nbsp;
+      <Button as={Link} to="/signup">
         Sign up
-      </Link>
+      </Button>
     </div>
   );
   return <div className="NavBar">{nav}</div>;

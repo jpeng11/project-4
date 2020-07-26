@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import userService from "../../utils/userService";
 
+import { Card, Button, Form } from "semantic-ui-react";
+
 class SignupForm extends Component {
   state = {
     name: "",
@@ -43,69 +45,59 @@ class SignupForm extends Component {
   render() {
     return (
       <div>
-        <header className="header-footer">Sign Up</header>
-        <form className="form-horizontal" onSubmit={this.handleSubmit}>
-          <div className="form-group">
-            <div className="col-sm-12">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Name"
-                value={this.state.name}
-                name="name"
-                onChange={this.handleChange}
-              />
-            </div>
-          </div>
-          <div className="form-group">
-            <div className="col-sm-12">
-              <input
-                type="email"
-                className="form-control"
-                placeholder="Email"
-                value={this.state.email}
-                name="email"
-                onChange={this.handleChange}
-              />
-            </div>
-          </div>
-          <div className="form-group">
-            <div className="col-sm-12">
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Password"
-                value={this.state.password}
-                name="password"
-                onChange={this.handleChange}
-              />
-            </div>
-          </div>
-          <div className="form-group">
-            <div className="col-sm-12">
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Confirm Password"
-                value={this.state.passwordConf}
-                name="passwordConf"
-                onChange={this.handleChange}
-              />
-            </div>
-          </div>
-          <div className="form-group">
-            <div className="col-sm-12 text-center">
-              <button
-                className="btn btn-default"
-                disabled={this.isFormInvalid()}
-              >
-                Sign Up
-              </button>
-              &nbsp;&nbsp;
-              <Link to="/">Cancel</Link>
-            </div>
-          </div>
-        </form>
+        <Card className="CardItem">
+          <Card.Content>
+            <Card.Header>Sign Up</Card.Header>
+          </Card.Content>
+          <Card.Content>
+            <Form onSubmit={this.handleSubmit}>
+              <Form.Field>
+                <label>Name</label>
+                <input
+                  type="text"
+                  placeholder="Name"
+                  value={this.state.name}
+                  name="name"
+                  onChange={this.handleChange}
+                />
+              </Form.Field>
+              <Form.Field>
+                <label>Email</label>
+                <input
+                  type="email"
+                  placeholder="Email"
+                  value={this.state.email}
+                  name="email"
+                  onChange={this.handleChange}
+                />
+              </Form.Field>
+              <Form.Field>
+                <label>Password</label>
+                <input
+                  type="password"
+                  placeholder="Password"
+                  value={this.state.password}
+                  name="password"
+                  onChange={this.handleChange}
+                />
+              </Form.Field>
+              <Form.Field>
+                <label>Confirm Password</label>
+                <input
+                  type="password"
+                  placeholder="Confirm Password"
+                  value={this.state.passwordConf}
+                  name="passwordConf"
+                  onChange={this.handleChange}
+                />
+              </Form.Field>
+              <Button disabled={this.isFormInvalid()}>Sign Up</Button>
+              <Button as={Link} to="/">
+                Cancel
+              </Button>
+            </Form>
+          </Card.Content>
+        </Card>
       </div>
     );
   }

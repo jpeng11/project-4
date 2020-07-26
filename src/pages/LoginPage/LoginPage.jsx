@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import "./LoginPage.css";
 import userService from "../../utils/userService";
 
+import { Card, Button, Form } from "semantic-ui-react";
+
 class LoginPage extends Component {
   state = {
     email: "",
@@ -29,31 +31,40 @@ class LoginPage extends Component {
   render() {
     return (
       <div className="LoginPage">
-        <h1>Login</h1>
-        <form onSubmit={this.handleSubmit}>
-          <div>
-            <input
-              type="email"
-              placeholder="Email"
-              name="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div>
-            <input
-              type="password"
-              placeholder="Password"
-              name="pw"
-              value={this.state.pw}
-              onChange={this.handleChange}
-            />
-          </div>
-          <div>
-            <button>Login</button>
-            <Link to="/">Cancel</Link>
-          </div>
-        </form>
+        <Card className="CardItem">
+          <Card.Content>
+            <Card.Header>Login</Card.Header>
+          </Card.Content>
+          <Card.Content>
+            <Form onSubmit={this.handleSubmit}>
+              <Form.Field>
+                <label>Email</label>
+                <input
+                  type="email"
+                  placeholder="Email"
+                  name="email"
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                />
+              </Form.Field>
+              <Form.Field>
+                <label>Password</label>
+                <input
+                  type="password"
+                  placeholder="Password"
+                  name="pw"
+                  value={this.state.pw}
+                  onChange={this.handleChange}
+                />
+              </Form.Field>
+
+              <Button type="submit">Submit</Button>
+              <Button as={Link} to="/">
+                Cancel
+              </Button>
+            </Form>
+          </Card.Content>
+        </Card>
       </div>
     );
   }
