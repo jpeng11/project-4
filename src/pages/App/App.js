@@ -1,11 +1,14 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
+
 import "./App.css";
 
 // Import Components
 import Navbar from "../../components/NavBar/NavBar";
 import LoginPage from "../LoginPage/LoginPage";
 import SignupPage from "../SignupPage/SignupPage";
+import MainPage from "../../components/MainPage/MainPage";
+import RandomQuestion from "../../components/RandomQuestion/RandomQuestion";
 
 import userService from "../../utils/userService";
 
@@ -33,6 +36,11 @@ class App extends React.Component {
         <Switch>
           <Route
             exact
+            path="/"
+            render={() => <MainPage user={this.state.user} />}
+          />
+          <Route
+            exact
             path="/signup"
             render={({ history }) => (
               <SignupPage
@@ -51,6 +59,7 @@ class App extends React.Component {
               />
             )}
           />
+          <Route exact path="/ques" render={() => <RandomQuestion />} />
         </Switch>
       </div>
     );

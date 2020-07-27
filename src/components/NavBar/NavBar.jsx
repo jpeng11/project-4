@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./NavBar.css";
 
-import { Button, Menu, Segment } from "semantic-ui-react";
+import { Menu, Segment } from "semantic-ui-react";
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -24,13 +24,13 @@ class NavBar extends React.Component {
             onClick={this.handleItemClick}
           />
           <Menu.Item
-            name="messages"
-            active={activeItem === "messages"}
+            name="xxxx"
+            active={activeItem === "xxxx"}
             onClick={this.handleItemClick}
           />
           <Menu.Item
-            name="friends"
-            active={activeItem === "friends"}
+            name="xxxx"
+            active={activeItem === "xxxx"}
             onClick={this.handleItemClick}
           />
           <Menu.Item name="Log in" as={Link} to="/login" position="right" />
@@ -53,13 +53,13 @@ class NavBar extends React.Component {
             to="/"
           />
           <Menu.Item
-            name="messages"
-            active={activeItem === "messages"}
+            name="xxxx"
+            active={activeItem === "xxxx"}
             onClick={this.handleItemClick}
           />
           <Menu.Item
-            name="friends"
-            active={activeItem === "friends"}
+            name="xxxx"
+            active={activeItem === "xxxx"}
             onClick={this.handleItemClick}
           />
           <Menu.Item name="Log in" as={Link} to="/login" position="right" />
