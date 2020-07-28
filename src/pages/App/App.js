@@ -8,8 +8,9 @@ import Navbar from "../../components/NavBar/NavBar";
 import LoginPage from "../LoginPage/LoginPage";
 import SignupPage from "../SignupPage/SignupPage";
 import MainPage from "../../components/MainPage/MainPage";
-import RandomQuestion from "../../components/RandomQuestion/RandomQuestion";
+import QuestionCard from "../../components/QuestionCard/QuestionCard";
 
+// Utility
 import userService from "../../utils/userService";
 
 class App extends React.Component {
@@ -59,7 +60,7 @@ class App extends React.Component {
               />
             )}
           />
-          <Route exact path="/ques" render={() => <RandomQuestion />} />
+          <Route exact path="/ques" render={() => <QuestionCard />} />
         </Switch>
       </div>
     );
