@@ -20,6 +20,8 @@ class NavBar extends React.Component {
         <Menu pointing secondary>
           <Menu.Item
             name="home"
+            as={Link}
+            to="/"
             active={activeItem === "home"}
             onClick={this.handleItemClick}
           />

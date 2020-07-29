@@ -1,9 +1,10 @@
 import React from "react";
 import axios from "axios";
 
+import SelectionCard from "../SelectionCard/SelectionCard";
 import QuestionCard from "../QuestionCard/QuestionCard";
 
-import { Button } from "semantic-ui-react";
+//import {} from "semantic-ui-react";
 import "./MainPage.css";
 
 class MainPage extends React.Component {
@@ -11,21 +12,28 @@ class MainPage extends React.Component {
     super(props);
     this.state = {
       questions: [],
-      visible: false,
+      answerVisible: false,
+      selectionVisible: true,
       duration: 0,
       currentQuestion: [],
       startIdx: 0,
       endIdx: 1,
+      questCategory: ["General", "HTML", "CSS", "JS", "Node.js", "React"],
     };
   }
 
   getQuestion = () => {
+    this.toggleSelectionVisibility();
     axios
-      .get("/api/questions/random")
+      .get("/api/questions/random", {
+        params: {
+          category: "general",
+        },
+      })
       .then((response) => {
         this.setState({
           questions: response.data,
-          visible: false,
+          answerVisible: false,
           duration: 0,
         });
         this.updateCurrentQuestion();
@@ -35,10 +43,17 @@ class MainPage extends React.Component {
       });
   };
 
-  toggleVisibility = () => {
+  toggleAnswerVisibility = () => {
     this.setState((prevState) => ({
-      visible: !prevState.visible,
+      answerVisible: !prevState.answerVisible,
       duration: 500,
+    }));
+  };
+
+  toggleSelectionVisibility = () => {
+    this.setState((prevState) => ({
+      selectionVisible: !prevState.selectionVisible,
+      questionVisible: !prevState.questionVisible,
     }));
   };
 
@@ -47,7 +62,7 @@ class MainPage extends React.Component {
       (prevState) => ({
         startIdx: prevState.startIdx - 1,
         endIdx: prevState.endIdx - 1,
-        visible: false,
+        answerVisible: false,
         duration: 0,
       }),
       () => {
@@ -61,7 +76,7 @@ class MainPage extends React.Component {
       (prevState) => ({
         startIdx: prevState.startIdx + 1,
         endIdx: prevState.endIdx + 1,
-        visible: false,
+        answerVisible: false,
         duration: 0,
       }),
       () => {
@@ -79,15 +94,28 @@ class MainPage extends React.Component {
     });
   };
 
+  showSelection = () => {
+    this.toggleSelectionVisibility();
+    this.setState({ currentQuestion: [] });
+  };
+
   render() {
     return (
       <div>
-        <Button onClick={this.getQuestion}>Get Question</Button>
+        <SelectionCard
+          getQuestion={this.getQuestion}
+          toggleSelectionVisibility={this.toggleSelectionVisibility}
+          selectionVisible={this.state.selectionVisible}
+          showSelection={this.showSelection}
+          questCategory={this.state.questCategory}
+        />
+
         <QuestionCard
+          questions={this.state.questions}
           currentQuestion={this.state.currentQuestion}
-          visible={this.state.visible}
+          answerVisible={this.state.answerVisible}
           duration={this.state.duration}
-          toggleVisibility={this.toggleVisibility}
+          toggleAnswerVisibility={this.toggleAnswerVisibility}
           prevQuest={this.prevQuest}
           nextQuest={this.nextQuest}
           startIdx={this.state.startIdx}

@@ -19,13 +19,13 @@ const QuestionCard = (props) => {
                   </Card.Content>
                   <Card.Content>{quest.question}</Card.Content>
                   <Card.Content>
-                    <Button onClick={props.toggleVisibility}>
-                      {props.visible ? "Hide Answer" : "Show Answer"}
+                    <Button onClick={props.toggleAnswerVisibility}>
+                      {props.answerVisible ? "Hide Answer" : "Show Answer"}
                     </Button>
                   </Card.Content>
                 </Card>
                 <Transition
-                  visible={props.visible}
+                  visible={props.answerVisible}
                   animation="scale"
                   duration={props.duration}
                 >
@@ -43,6 +43,9 @@ const QuestionCard = (props) => {
                 ) : (
                   <Button onClick={props.prevQuest}>&#8592;</Button>
                 )}
+                <span>
+                  {props.endIdx} / {props.questions.length}&nbsp;
+                </span>
                 {props.endIdx === 5 ? (
                   <Button onClick={props.nextQuest} disabled>
                     &#8594;
