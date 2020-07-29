@@ -1,3 +1,6 @@
 .ui.fluid.card {
   width: 60%;
 }
+.ui.progress {
+  width: 30%;
+}

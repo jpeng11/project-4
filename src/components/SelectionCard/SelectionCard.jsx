@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import {
   Card,
@@ -7,6 +8,7 @@ import {
   Checkbox,
   Form,
   Divider,
+  Input,
 } from "semantic-ui-react";
 import "./SelectionCard.css";
 
@@ -26,13 +28,31 @@ const SelectionCard = (props) => {
                     label={qc}
                     key={idx}
                     onClick={() => props.handleCategorySelection(idx)}
+                    //checked={props.checked}
                   />
                 );
               })}
             </Form.Field>
+            <Form.Field required inline>
+              <label>Number of Questions:</label>
+              <Input
+                type="number"
+                min="1"
+                width={2}
+                value={props.numOfQuest}
+                onChange={props.handleNumOfQuestInputChange}
+                name="numOfQuest"
+              ></Input>
+            </Form.Field>
             <Divider section />
             <Form.Field>
-              <Button onClick={props.getQuestion}>Get Question</Button>
+              {props.checkedCategory.length === 0 ? (
+                <Button onClick={props.getQuestion} disabled>
+                  Get Question
+                </Button>
+              ) : (
+                <Button onClick={props.getQuestion}>Get Question</Button>
+              )}
             </Form.Field>
           </Form>
         </Card>

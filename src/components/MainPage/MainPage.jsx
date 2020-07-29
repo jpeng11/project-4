@@ -20,15 +20,21 @@ class MainPage extends React.Component {
       endIdx: 1,
       questCategory: ["General", "HTML", "CSS", "JS", "Node.js", "React"],
       checkedCategory: [],
+      numOfQuest: 1,
+      //checked: false,
     };
   }
 
+  componentDidMount() {
+    console.log(this.state.checkedCategory.length);
+  }
   getQuestion = () => {
     this.toggleSelectionVisibility();
     axios
       .get("/api/questions/random", {
         params: {
           category: this.state.checkedCategory,
+          numOfQuest: this.state.numOfQuest,
         },
       })
       .then((response) => {
@@ -43,6 +49,10 @@ class MainPage extends React.Component {
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  handleNumOfQuestInputChange = (e) => {
+    this.setState({ numOfQuest: e.target.value });
   };
 
   toggleAnswerVisibility = () => {
@@ -98,7 +108,12 @@ class MainPage extends React.Component {
 
   showSelection = () => {
     this.toggleSelectionVisibility();
-    this.setState({ currentQuestion: [] });
+    this.setState({
+      currentQuestion: [],
+      checkedCategory: [],
+      checked: false,
+      numOfQuest: 1,
+    });
   };
 
   handleCategorySelection = (idx) => {
@@ -120,6 +135,10 @@ class MainPage extends React.Component {
           showSelection={this.showSelection}
           questCategory={this.state.questCategory}
           handleCategorySelection={this.handleCategorySelection}
+          checkedCategory={this.state.checkedCategory}
+          numOfQuest={this.state.numOfQuest}
+          handleNumOfQuestInputChange={this.handleNumOfQuestInputChange}
+          checked={this.state.checked}
         />
 
         <QuestionCard
