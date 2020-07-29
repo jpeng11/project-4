@@ -1,4 +1,5 @@
 const Question = require("../models/question");
+const querystring = require("querystring");
 
 module.exports = {
   getRandomQuest,
@@ -6,7 +7,7 @@ module.exports = {
 
 function getRandomQuest(req, res, next) {
   Question.aggregate([
-    { $match: { category: req.query.category } },
+    { $match: { category: { $in: req.query.category } } },
     { $sample: { size: 5 } },
   ])
     .then((questions) => res.json(questions))

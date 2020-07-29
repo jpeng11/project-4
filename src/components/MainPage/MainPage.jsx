@@ -19,6 +19,7 @@ class MainPage extends React.Component {
       startIdx: 0,
       endIdx: 1,
       questCategory: ["General", "HTML", "CSS", "JS", "Node.js", "React"],
+      checkedCategory: [],
     };
   }
 
@@ -27,7 +28,7 @@ class MainPage extends React.Component {
     axios
       .get("/api/questions/random", {
         params: {
-          category: "general",
+          category: this.state.checkedCategory,
         },
       })
       .then((response) => {
@@ -37,6 +38,7 @@ class MainPage extends React.Component {
           duration: 0,
         });
         this.updateCurrentQuestion();
+        console.log(this.state.questions);
       })
       .catch((error) => {
         console.log(error);
@@ -99,6 +101,15 @@ class MainPage extends React.Component {
     this.setState({ currentQuestion: [] });
   };
 
+  handleCategorySelection = (idx) => {
+    this.setState({
+      checkedCategory: [
+        ...this.state.checkedCategory,
+        this.state.questCategory[idx].toLowerCase(),
+      ],
+    });
+  };
+
   render() {
     return (
       <div>
@@ -108,6 +119,7 @@ class MainPage extends React.Component {
           selectionVisible={this.state.selectionVisible}
           showSelection={this.showSelection}
           questCategory={this.state.questCategory}
+          handleCategorySelection={this.handleCategorySelection}
         />
 
         <QuestionCard

@@ -21,7 +21,13 @@ const SelectionCard = (props) => {
           <Form>
             <Form.Field>
               {props.questCategory.map((qc, idx) => {
-                return <Checkbox label={qc} key={idx} />;
+                return (
+                  <Checkbox
+                    label={qc}
+                    key={idx}
+                    onClick={() => props.handleCategorySelection(idx)}
+                  />
+                );
               })}
             </Form.Field>
             <Divider section />
