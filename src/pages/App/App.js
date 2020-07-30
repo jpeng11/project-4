@@ -10,6 +10,7 @@ import SignupPage from "../SignupPage/SignupPage";
 import MainPage from "../../components/MainPage/MainPage";
 //import QuestionCard from "../../components/QuestionCard/QuestionCard";
 import QuestionListPage from "../QuestionListPage/QuestionListPage";
+import SubmitNew from "../SubmitNewQuestionPage/SubmitNew";
 
 // Utility
 import userService from "../../utils/userService";
@@ -62,6 +63,7 @@ class App extends React.Component {
             )}
           />
           <Route exact path="/showList" render={() => <QuestionListPage />} />
+          <Route exact path="/submitNew" render={() => <SubmitNew />} />
         </Switch>
       </div>
     );

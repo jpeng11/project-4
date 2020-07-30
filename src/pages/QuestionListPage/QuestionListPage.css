@@ -7,3 +7,7 @@
 .ui.header:first-child {
   margin-top: 20px;
 }
+.listPageDivider {
+  margin: 50px 20px;
+  width: 50%;
+}

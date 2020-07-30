@@ -4,6 +4,7 @@ const questionSchema = new mongoose.Schema(
   {
     question: String,
     answer: String,
+    category: String,
   },
   {
     timestamps: true,

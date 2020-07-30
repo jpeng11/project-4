@@ -20,6 +20,7 @@ const SelectionCard = (props) => {
           <Card.Content>
             <Card.Header>Select Category</Card.Header>
           </Card.Content>
+          <Divider />
           <Form>
             <Form.Field>
               {props.questCategory.map((qc, idx) => {
@@ -44,7 +45,7 @@ const SelectionCard = (props) => {
                 name="numOfQuest"
               ></Input>
             </Form.Field>
-            <Divider section />
+            <Divider section className="selectionDivider" />
             <Form.Field>
               {props.checkedCategory.length === 0 ? (
                 <Button onClick={props.getQuestion} disabled>
