@@ -1,8 +1,8 @@
 const Question = require("../models/question");
-const querystring = require("querystring");
 
 module.exports = {
   getRandomQuest,
+  getAll,
 };
 
 function getRandomQuest(req, res, next) {
@@ -10,6 +10,12 @@ function getRandomQuest(req, res, next) {
     { $match: { category: { $in: req.query.category } } },
     { $sample: { size: parseInt(req.query.numOfQuest) } },
   ])
+    .then((questions) => res.json(questions))
+    .catch((err) => res.status(400).json("Error: " + err));
+}
+
+function getAll(req, res, next) {
+  Question.find({ category: "general" })
     .then((questions) => res.json(questions))
     .catch((err) => res.status(400).json("Error: " + err));
 }

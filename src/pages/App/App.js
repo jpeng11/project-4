@@ -8,7 +8,8 @@ import Navbar from "../../components/NavBar/NavBar";
 import LoginPage from "../LoginPage/LoginPage";
 import SignupPage from "../SignupPage/SignupPage";
 import MainPage from "../../components/MainPage/MainPage";
-import QuestionCard from "../../components/QuestionCard/QuestionCard";
+//import QuestionCard from "../../components/QuestionCard/QuestionCard";
+import QuestionListPage from "../QuestionListPage/QuestionListPage";
 
 // Utility
 import userService from "../../utils/userService";
@@ -60,7 +61,7 @@ class App extends React.Component {
               />
             )}
           />
-          <Route exact path="/ques" render={() => <QuestionCard />} />
+          <Route exact path="/showList" render={() => <QuestionListPage />} />
         </Switch>
       </div>
     );

@@ -1,0 +1,9 @@
+.questionContent {
+  text-align: left !important;
+}
+.answerContent {
+  text-align: left;
+}
+.ui.header:first-child {
+  margin-top: 20px;
+}

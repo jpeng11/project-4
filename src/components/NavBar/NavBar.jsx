@@ -26,8 +26,8 @@ class NavBar extends React.Component {
             onClick={this.handleItemClick}
           />
           <Menu.Item
-            name="xxxx"
-            active={activeItem === "xxxx"}
+            name="Show All"
+            active={activeItem === "Show All"}
             onClick={this.handleItemClick}
           />
           <Menu.Item
@@ -55,9 +55,11 @@ class NavBar extends React.Component {
             to="/"
           />
           <Menu.Item
-            name="xxxx"
-            active={activeItem === "xxxx"}
+            name="Show All"
+            active={activeItem === "Show All"}
             onClick={this.handleItemClick}
+            as={Link}
+            to="/showList"
           />
           <Menu.Item
             name="xxxx"
