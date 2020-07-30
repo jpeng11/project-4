@@ -25,9 +25,6 @@ class MainPage extends React.Component {
     };
   }
 
-  componentDidMount() {
-    console.log(this.state.checkedCategory.length);
-  }
   getQuestion = () => {
     this.toggleSelectionVisibility();
     axios

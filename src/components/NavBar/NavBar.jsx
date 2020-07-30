@@ -31,9 +31,11 @@ class NavBar extends React.Component {
             onClick={this.handleItemClick}
           />
           <Menu.Item
-            name="xxxx"
-            active={activeItem === "xxxx"}
+            name="Submit New"
+            active={activeItem === "Submit New"}
             onClick={this.handleItemClick}
+            as={Link}
+            to="/submitNew"
           />
           <Menu.Item name="Log in" as={Link} to="/login" position="right" />
           <Menu.Item

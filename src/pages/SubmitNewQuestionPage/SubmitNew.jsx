@@ -1,10 +1,15 @@
 import React from "react";
 
-import { Card, Form, Button, FormField } from "semantic-ui-react";
+import { Card, Form, Message, FormField } from "semantic-ui-react";
 import Axios from "axios";
 
 class SubmitNew extends React.Component {
-  state = { question: "", answer: "", category: "", optionValue: "" };
+  state = {
+    question: "",
+    answer: "",
+    category: "default",
+    submitSuccess: false,
+  };
 
   handleInputChange = (e) => {
     this.setState({ [e.target.name]: e.target.value });
@@ -23,6 +28,12 @@ class SubmitNew extends React.Component {
       .catch((error) => {
         console.log(error);
       });
+    this.setState({
+      submitSuccess: true,
+      question: "",
+      answer: "",
+      category: "default",
+    });
   };
 
   render() {
@@ -38,16 +49,22 @@ class SubmitNew extends React.Component {
               label="Question"
               name="question"
               onChange={this.handleInputChange}
+              value={this.state.question}
             />
             <Form.TextArea
               label="Answer"
               name="answer"
               onChange={this.handleInputChange}
+              value={this.state.answer}
             />
             <FormField>
               <label>Category</label>
-              <select name="category" onChange={this.handleInputChange}>
-                <option disabled selected>
+              <select
+                name="category"
+                onChange={this.handleInputChange}
+                value={this.state.category}
+              >
+                <option disabled selected value="default">
                   --- Select an Category ---
                 </option>
                 <option value="general">General</option>
@@ -55,10 +72,26 @@ class SubmitNew extends React.Component {
                 <option value="css">CSS</option>
               </select>
             </FormField>
-
-            <Form.Button onClick={this.handleSubmit}>Submit</Form.Button>
+            {this.state.category ? (
+              <Form.Button onClick={this.handleSubmit}>Submit</Form.Button>
+            ) : (
+              <Form.Button onClick={this.handleSubmit} disabled>
+                Submit
+              </Form.Button>
+            )}
           </Form>
         </Card.Content>
+        {this.state.submitSuccess ? (
+          <Message>
+            <Message.Header>Submit successful</Message.Header>
+            <p>
+              Your question submit successful, we will review your question and
+              add it to database
+            </p>
+          </Message>
+        ) : (
+          ""
+        )}
       </Card>
     );
   }

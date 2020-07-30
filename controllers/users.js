@@ -9,6 +9,8 @@ module.exports = {
 };
 
 async function signup(req, res) {
+  req.body.role = "user";
+  console.log(req.body);
   const user = new User(req.body);
   try {
     await user.save();

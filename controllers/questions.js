@@ -1,4 +1,5 @@
 const Question = require("../models/question");
+const NewQuestion = require("../models/newQuestion");
 
 module.exports = {
   getRandomQuest,
@@ -17,18 +18,16 @@ function getRandomQuest(req, res, next) {
 
 function getAll(req, res, next) {
   Question.find({})
-    .then((questions) => res.json(questions))
+    .then(res.json())
     .catch((err) => res.status(400).json("Error: " + err));
 }
 
-function submitNewQuest(req, res, next) {
-  Question.create({
+async function submitNewQuest(req, res, next) {
+  await NewQuestion.create({
     question: req.body.question,
     answer: req.body.answer,
     category: req.body.category,
   })
-    .then((res) => {
-      if (res.ok) return res.json();
-    })
+    .then(res.status(200).json())
     .catch((err) => res.status(400).json("Error: " + err));
 }
