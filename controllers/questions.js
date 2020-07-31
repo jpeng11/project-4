@@ -25,7 +25,7 @@ function getAll(req, res, next) {
 }
 
 async function submitNewQuest(req, res, next) {
-  await Question.create({
+  await NewQuestion.create({
     question: req.body.question,
     answer: req.body.answer,
     category: req.body.category,
