@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Card, Button, Transition, Progress } from "semantic-ui-react";
+import { Card, Button, Transition, Progress, Header } from "semantic-ui-react";
 
 import "./QuestionCard.css";
 const QuestionCard = (props) => {
@@ -17,7 +17,9 @@ const QuestionCard = (props) => {
                   <Card.Content>
                     <Card.Header>Question</Card.Header>
                   </Card.Content>
-                  <Card.Content>{quest.question}</Card.Content>
+                  <Card.Content>
+                    <Header as="h1">{quest.question} </Header>
+                  </Card.Content>
                   <Card.Content>
                     <Button onClick={props.toggleAnswerVisibility}>
                       {props.answerVisible ? "Hide Answer" : "Show Answer"}
@@ -41,6 +43,7 @@ const QuestionCard = (props) => {
                   total={props.questions.length}
                   progress="ratio"
                   color="green"
+                  centered
                 />
                 {props.startIdx === 0 ? (
                   <Button onClick={props.prevQuest} disabled>
@@ -50,7 +53,7 @@ const QuestionCard = (props) => {
                   <Button onClick={props.prevQuest}>&#8592;</Button>
                 )}
                 &nbsp; &nbsp; &nbsp; &nbsp;
-                {props.endIdx === 5 ? (
+                {props.endIdx === props.numOfQuest ? (
                   <Button onClick={props.nextQuest} disabled>
                     &#8594;
                   </Button>

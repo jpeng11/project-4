@@ -8,9 +8,9 @@ import Navbar from "../../components/NavBar/NavBar";
 import LoginPage from "../LoginPage/LoginPage";
 import SignupPage from "../SignupPage/SignupPage";
 import MainPage from "../../components/MainPage/MainPage";
-//import QuestionCard from "../../components/QuestionCard/QuestionCard";
 import QuestionListPage from "../QuestionListPage/QuestionListPage";
 import SubmitNew from "../SubmitNewQuestionPage/SubmitNew";
+import ViewPendingPage from "../ViewPendingPage/ViewPendingPage";
 
 // Utility
 import userService from "../../utils/userService";
@@ -20,8 +20,6 @@ class App extends React.Component {
     super(props);
     this.state = { user: userService.getUser() };
   }
-
-  componentDidMount() {}
 
   handleSignupOrLogin = async () => {
     this.setState({ user: userService.getUser() });
@@ -64,6 +62,7 @@ class App extends React.Component {
           />
           <Route exact path="/showList" render={() => <QuestionListPage />} />
           <Route exact path="/submitNew" render={() => <SubmitNew />} />
+          <Route exact path="/viewPending" render={() => <ViewPendingPage />} />
         </Switch>
       </div>
     );

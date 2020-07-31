@@ -29,6 +29,8 @@ class NavBar extends React.Component {
             name="Show All"
             active={activeItem === "Show All"}
             onClick={this.handleItemClick}
+            as={Link}
+            to="/showList"
           />
           <Menu.Item
             name="Submit New"
@@ -37,12 +39,23 @@ class NavBar extends React.Component {
             as={Link}
             to="/submitNew"
           />
-          <Menu.Item name="Log in" as={Link} to="/login" position="right" />
+          {this.props.user.role === "admin" ? (
+            <Menu.Item
+              name="View Pending"
+              active={activeItem === "View Pending"}
+              onClick={this.handleItemClick}
+              as={Link}
+              to="/viewPending"
+            />
+          ) : (
+            ""
+          )}
           <Menu.Item
             name="Log out"
             onClick={this.props.handleLogout}
             as={Link}
             to=""
+            position="right"
           />
         </Menu>
       </Segment>

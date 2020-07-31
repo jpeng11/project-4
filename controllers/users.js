@@ -42,7 +42,11 @@ async function login(req, res) {
 /*----- Helper Functions -----*/
 
 function createJWT(user) {
-  return jwt.sign({ user: { id: user.id, name: user.name } }, SECRET, {
-    expiresIn: "24h",
-  });
+  return jwt.sign(
+    { user: { id: user.id, name: user.name, role: user.role } },
+    SECRET,
+    {
+      expiresIn: "24h",
+    }
+  );
 }

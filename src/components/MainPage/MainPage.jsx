@@ -111,6 +111,7 @@ class MainPage extends React.Component {
       checked: false,
       numOfQuest: 1,
     });
+    window.location.reload(false);
   };
 
   handleCategorySelection = (idx) => {

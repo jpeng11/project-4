@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 import {
   Card,
@@ -29,7 +28,6 @@ const SelectionCard = (props) => {
                     label={qc}
                     key={idx}
                     onClick={() => props.handleCategorySelection(idx)}
-                    //checked={props.checked}
                   />
                 );
               })}

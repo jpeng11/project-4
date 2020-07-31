@@ -7,7 +7,7 @@ class SubmitNew extends React.Component {
   state = {
     question: "",
     answer: "",
-    category: "default",
+    category: "javascript",
     submitSuccess: false,
   };
 
@@ -32,7 +32,7 @@ class SubmitNew extends React.Component {
       submitSuccess: true,
       question: "",
       answer: "",
-      category: "default",
+      category: "javascript",
     });
   };
 
@@ -70,6 +70,8 @@ class SubmitNew extends React.Component {
                 <option value="general">General</option>
                 <option value="html">HTML</option>
                 <option value="css">CSS</option>
+                <option value="javascript">JavaScript</option>
+                <option value=""></option>
               </select>
             </FormField>
             {this.state.category ? (
